@@ -28,10 +28,13 @@ The app should be able to allow submission of URL to be shortened, Shortened URL
 - Redis for cache
 - Heroku for deployment
 
-## Submission
+## Submitting your solution
 
 ### Code commits
 - If you are using a framework and it has boilerplate code generation I would suggest creating the initial commit to separate the boilerplate code from yours
 - Commit often this would help convey your thought process virtually
+
+### Fork this code
+- Fork this code into your Gitlab account as a "Private" repository and invite the users in https://gitlab.com/groups/coingecko-dev-test/-/group_members
 - Branch out of the master branch and create a Merge Request. We can go through the code and discuss there
 
