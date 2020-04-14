@@ -13,7 +13,8 @@ Suppose you start working at CoinGecko and the first project you are asked to wo
 We will meet with stakeholders every week for the progress. It would be good to have a demonstrable during each meeting.
 Please describe how you would plan the project and a high level design of the architecture. What principles or design practices would you consider incorporating into the process and technology? You can include diagrams. You do not need to write any code for this problem.
 
-## Part 2: Implementation: Be able to submit URL to be shortened, Shortened URL should redirect, an index page to list the URLs with simple analytics
+## Part 2: Implementation
+The app should be able to allow submission of URL to be shortened, Shortened URL should redirect, an index page to list the URLs with simple analytics
 
 ### Requirements:
 - Use Git version control to commit your changes. (You may create a Gitlab account, create a free private repository, and add us as collaborators). We encourage you to commit often and lay out your thought process in the commit messages clearly.
