@@ -1,40 +1,38 @@
-# Building Shorten URL service
+# CoinGecko Engineering Written Assignment - Url Shortener
+You are tasked to build a simple URL Shortener service as a microservice for a startup you recently joined. 
 
-## Context
-Suppose you start working at CoinGecko and the first project you are asked to work on involves building a url shortener service. This application should behave similarly to https://bitly.com or https://tinyurl.com. The hypothetical team for this project would consist of yourself, another frontend engineer, a designer, and a product owner.
+A URL Shortener service, similar to [bit.ly](https://bitly.com/) and [tinyurl.com](https://tinyurl.com/) is a service that maps a short-form URL \(_"Short URL"_\) to a user-provided target URL \(_"Target URL"_\).
 
-### Requirements:
-- The length of the shortened path should start from 2 letters and be unique.
-- The website should be able to redirect the user to the original url.
-- Stakeholder wants to do some data analytics.
-- A simple and neat UI (use any CSS, with or without frameworks)
+## Software Specifications
 
-## Part 1: Planning the deliveries
-We will meet with stakeholders every week for the progress. It would be good to have a demonstrable during each meeting.
-Please describe how you would plan the project and a high level design of the architecture. What principles or design practices would you consider incorporating into the process and technology? You can include diagrams. You do not need to write any code for this problem.
+- Your application is deployed with a web interface and a form field that accepts a Target URL.
+- When the Target URL is shortened, the user is returned with a **Short URL**, the original **Target URL** and the **Titl**e tag of the Target URL. 
+- A Short URL can be publicly shared and accessed.
+- A Short URL path can be in any URI pattern, but should not exceed a maximum of 15 characters
+- Multiple Short URLs can share the same Target URL. 
+- You need to produce a simple usage report for the application. This report should track the **number of clicks**, **originating geolocation** and **timestamp** of each visit to a Short URL.
 
-## Part 2: Implementation
-The app should be able to allow submission of URL to be shortened, Shortened URL should redirect, an index page to list the URLs with simple analytics
 
-### Requirements:
-- Use Git version control to commit your changes. (You may create a Gitlab account, create a free private repository, and add us as collaborators). We encourage you to commit often and lay out your thought process in the commit messages clearly.
-- The app should be deployed and can be accessed from a public facing URL.
-- Please write test cases against the functions implemented.
-- Provide instructions for setup and launch. (It’s usually a README file)
+## Scoring Guide
+All submissions will be evaluated based on the following criteria: 
+- Completeness of solution including documentation and deployment
+- Test coverage and overall approach to automated testing including unit tests and integration tests. 
+- Clean, understandable and proper version-control practices
 
-### Please note that you can use your familiar stack for this part. For your information, we use
-- Ruby on Rails as the language and framework
-- PostgreSQL for datastore
-- Redis for cache
-- Heroku for deployment
 
-## Submitting your solution
+#### Extra Credit: 
+L3 and above candidates will additionally be evaluated based on the following criteria:
+ 
+- **Strategic design patterns** (e.g. [Service Objects](https://www.toptal.com/ruby-on-rails/rails-service-objects-tutorial), [Query Objects](https://martinfowler.com/eaaCatalog/queryObject.html), [Decorators](https://refactoring.guru/design-patterns/decorator))used in the solution to address extensibility, composability and other challenges.
+- **Error and edge-case handling** beyond the user [happy path](http://xunitpatterns.com/happy%20path.html).
+- **Scalability considerations** - what is the maximum number of short URLs or  supported concurrency of the application?
+- **Security considerations** - is the solution susceptible to common web application vulnerabilities?
 
-### Code commits
-- If you are using a framework and it has boilerplate code generation I would suggest creating the initial commit to separate the boilerplate code from yours
-- Commit often this would help convey your thought process virtually
 
-### Fork this code
-- Fork this code into your Gitlab account as a "Private" repository and invite the users in https://gitlab.com/groups/coingecko-dev-test/-/group_members
-- Branch out of the master branch and create a Merge Request. We can go through the code and discuss there
+## Submission Guide
+- Your submission should include a **README** that includes at least an **installation guide, dependencies and other relevant informatio**n (such as scaffolding tools) for the reviewing team. 
+- We do not expect candidates to take more than 2 weeks to complete the assignment. Most candidates are able to complete the assignment in half the allocated time.
+- **Your submission should not aim to be exhaustive** - your submission should succinctly illustrate your depth and breadth of experience corresponding to the job level expectations for your application. 
+- Your submission will be used as a **foundation for the next/final round** of interview.
+- You may use our [stackshare.io](https://stackshare.io/coingecko) profile as a point of reference.
 
