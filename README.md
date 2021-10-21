@@ -22,12 +22,13 @@ All submissions will be evaluated based on the following criteria:
 
 
 #### Extra Credit: 
-L3 and above candidates will additionally be evaluated based on the following criteria:
+L3 and above candidates will additionally be evaluated based one or more of the following criteria:
  
 - **Strategic design patterns** (e.g. [Service Objects](https://www.toptal.com/ruby-on-rails/rails-service-objects-tutorial), [Query Objects](https://martinfowler.com/eaaCatalog/queryObject.html), [Decorators](https://refactoring.guru/design-patterns/decorator))used in the solution to address extensibility, composability and other challenges.
 - **Error and edge-case handling** beyond the user [happy path](http://xunitpatterns.com/happy%20path.html).
 - **Scalability considerations** - what is the maximum number of short URLs or  supported concurrency of the application?
 - **Security considerations** - is the solution susceptible to common web application vulnerabilities?
+- Implementation of advanced, refactorable UI design components using popular frameworks. 
 
 
 ## Submission Guide
