@@ -18,6 +18,7 @@ All submissions will be evaluated based on the following criteria:
 - Completeness of solution including documentation and deployment
 - Test coverage and overall approach to automated testing including unit tests and integration tests. 
 - Clean, understandable and proper version-control practices
+- A comfortable UI/UX for end users 
 
 
 #### Extra Credit: 
