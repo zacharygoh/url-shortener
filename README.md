@@ -32,7 +32,10 @@ L3 and above candidates will additionally be evaluated based one or more of the 
 
 
 ## Submission Guide
-- Your submission should include a **README** that includes at least an **installation guide, dependencies and other relevant informatio**n (such as scaffolding tools) for the reviewing team. 
+- Your submission should include a **README** that includes at least an 
+    * installation guide 
+    * dependencies and other relevant information (such as scaffolding tools)
+    * live deployed application URL
 - We do not expect candidates to take more than 2 weeks to complete the assignment. Most candidates are able to complete the assignment in half the allocated time.
 - **Your submission should not aim to be exhaustive** - your submission should succinctly illustrate your depth and breadth of experience corresponding to the job level expectations for your application. 
 - Your submission will be used as a **foundation for the next/final round** of interview.
