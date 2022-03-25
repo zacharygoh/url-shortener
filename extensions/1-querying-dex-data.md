@@ -1,4 +1,4 @@
-Extension 1: Querying Data from Decentralized Exchanges
+# Extension 1: Querying Data from Decentralized Exchanges
 
 You are allowed to use Postman, Insomnia or any other API Client you are comfortable with.
 
