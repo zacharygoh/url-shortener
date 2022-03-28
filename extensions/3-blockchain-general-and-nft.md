@@ -1,4 +1,3 @@
-
 ## General Blockchain
 1. Bob owns a brand new luxurious apartment in Manhattan, New York. Can he use his apartment as collateral for a loan on https://compound.finance/ . If yes, explain how. If no, explain why not?
 2. Given that 1 ETH = 1000 USDC. You contributed as a liquidity provider to a Uniswap V2 ETH/USDC pool of 5 ETH and 5000 USDC. The combined value is $10,000. Weeks later, the price of 1 ETH = 1500 USDC. Explain what happens to the funds you contributed to the liquidity provider pool?
