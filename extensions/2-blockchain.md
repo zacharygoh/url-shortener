@@ -1,5 +1,3 @@
-
-
 ## Contract Calls Knowledge
 
 1.  Using [https://polygon-rpc.com/](https://polygon-rpc.com/) RPC node as a service, write the code and RPC call to obtain `totalSupply` of the [MANA token](https://polygonscan.com/token/0xa1c57f48f0deb89f569dfbe6e2b7f46d33606fd4) issued on the Polygon (MATIC) blockchain. You may consider using the ERC-20 ABI for your solution.
@@ -14,3 +12,12 @@
  1.  Quickswap, a DEX on Polygon (MATIC) allows users to swap two assets as a trade. For every swap transaction that is recorded on the blockchain, a swap event is emitted and stored in the network with this hash ID 0xd78ad95fa46c994b6551d0da85fc275fe613ce37657fb8d5e3d130840159d822. Write the RPC API call to get all the swap events that were emitted for the block [#26444465](https://polygonscan.com/block/26444465). Use [https://polygon-rpc.com/](https://polygon-rpc.com/) RPC node as a service.
     
 1.  When using the Quickswap DEX, we noticed that the price impact is -42.09% when we increase the size of the trade. What does price impact mean, why is it important, the math behind the price impact. Include as many details as you can to support your explanation.
+
+## Scoring Guide
+
+Submissions will be evaluated based on the following criteria:
+
+* Usage of RPC API to obtain the answers
+* Write code if necessary in any language you are familiar with alongside RPC calls
+* Any additional elaboration to your answers to make a case that you understand how these DeFi protocol works underlying
+
