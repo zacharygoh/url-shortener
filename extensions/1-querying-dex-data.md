@@ -6,9 +6,9 @@ You are allowed to use Postman, Insomnia or any other API Client you are comfort
 
 Given the following resources: 
 
-* Uniswap GraphQL API Endpoint: https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2/
+* Uniswap GraphQL API Endpoint: https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3
 	
-* Uniswap GraphQL API Interface: https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2/graphql
+* Uniswap GraphQL API Interface: https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3/graphql
 
 1. Using the above API endpoint, retrieve the schema (submit as a JSON file. Hint: browser inspector)
 
@@ -22,10 +22,9 @@ token1 id
 token1 symbol
 ```
 
-3. Repeat #2 with this condition, with reserveETH greater than 2
+3. Repeat #2 with this condition, with liqudity greater than 2 ETH 
 
-4. Using this pair id `0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc`, query below attributes (submit the CURL query, Hint: use `pair()`)
-using pair
+4. Using this pool id `0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640`, query below attributes (submit the CURL query, Hint: use `pools()`)
 
 ```
 id
@@ -33,9 +32,8 @@ token0 id
 token0 symbol
 token1 id
 token1 symbol
-trackedReserveETH
-reserveETH
-reserveUSD
+totalValueLockedETH
+totalValueLockedUSD
 token0Price
 token1Price
 volumeToken0
