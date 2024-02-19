@@ -4,10 +4,10 @@ You are allowed to use Postman, Insomnia or any other API Client you are comfort
 
 ## Specifications
 
-Given the following resources: 
+Given the following resources:
 
 * Uniswap GraphQL API Endpoint: https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3
-	
+
 * Uniswap GraphQL API Interface: https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3/graphql
 
 1. Using the above API endpoint, retrieve the schema (submit as a JSON file. Hint: browser inspector)
@@ -22,7 +22,7 @@ token1 id
 token1 symbol
 ```
 
-3. Repeat #2 with this condition, with liqudity greater than 2 ETH 
+3. Repeat #2 with this condition, with liqudity greater than 2 ETH
 
 4. Using this pool id `0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640`, query below attributes (submit the CURL query, Hint: use `pools()`)
 
@@ -30,15 +30,17 @@ token1 symbol
 id
 token0 id
 token0 symbol
+token0 derivedETH
 token1 id
 token1 symbol
-totalValueLockedETH
-totalValueLockedUSD
+token1 derivedETH
+liquidity
 token0Price
 token1Price
 volumeToken0
 volumeToken1
 volumeUSD
+totalValueLockedUSD
 ```
 
 ## Scoring Guide
