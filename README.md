@@ -11,7 +11,7 @@ A URL Shortener service, similar to [bit.ly](https://bitly.com/) and [tinyurl.co
 - A Short URL path can be in any URI pattern, but should not exceed a maximum of 15 characters
 - Multiple Short URLs can share the same Target URL.
 - You need to produce a simple usage report for the application. This report should track the **number of clicks**, **originating geolocation** and **timestamp** of each visit to a Short URL.
-- You also need to provide a Wiki on the methodology used for short UUID generation (assumptions, limitations, workarounds).
+- You also need to provide a Wiki on your solution for short URL path. Explain the limitations and workarounds for your solution. 
 
 ## Scoring Guide
 All submissions will be evaluated based on the following criteria:
