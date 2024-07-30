@@ -11,7 +11,7 @@ A URL Shortener service, similar to [bit.ly](https://bitly.com/) and [tinyurl.co
 - A Short URL path can be in any URI pattern, but should not exceed a maximum of 15 characters
 - Multiple Short URLs can share the same Target URL.
 - You need to produce a simple usage report for the application. This report should track the **number of clicks**, **originating geolocation** and **timestamp** of each visit to a Short URL.
-
+- You also need to provide a Wiki on the methodology used for short UUID generation (assumptions, limitations, workarounds).
 
 ## Scoring Guide
 All submissions will be evaluated based on the following criteria:
@@ -36,7 +36,7 @@ L3 and above candidates will additionally be evaluated based one or more of the 
     * installation guide
     * dependencies and other relevant information (such as scaffolding tools)
     * **deployed application URL**
-    * a paragraph on the methodology used for short UUID generation, assumptions, limitations and workarounds. 
+
 - We do not expect candidates to take more than 2 weeks to complete the assignment. Most candidates are able to complete the assignment in half the allocated time.
 - **Your submission should not aim to be exhaustive** - your submission should succinctly illustrate your depth and breadth of experience corresponding to the job level expectations for your application.
 - Your submission should be **publicly accessible for read**
