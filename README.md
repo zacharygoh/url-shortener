@@ -36,6 +36,7 @@ L3 and above candidates will additionally be evaluated based one or more of the 
     * installation guide
     * dependencies and other relevant information (such as scaffolding tools)
     * **deployed application URL**
+    * a paragraph on the methodology used for short UUID generation, assumptions, limitations and workarounds. 
 - We do not expect candidates to take more than 2 weeks to complete the assignment. Most candidates are able to complete the assignment in half the allocated time.
 - **Your submission should not aim to be exhaustive** - your submission should succinctly illustrate your depth and breadth of experience corresponding to the job level expectations for your application.
 - Your submission should be **publicly accessible for read**
