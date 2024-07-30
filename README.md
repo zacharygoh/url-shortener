@@ -5,13 +5,13 @@ A URL Shortener service, similar to [bit.ly](https://bitly.com/) and [tinyurl.co
 
 ## Software Specifications
 
-- Your application is deployed with a web interface and a form field that accepts a Target URL.
-- When the Target URL is shortened, the user is returned with a **Short URL**, the original **Target URL** and the **Title** tag of the Target URL.
-- A Short URL can be publicly shared and accessed.
-- A Short URL path can be in any URI pattern, but should not exceed a maximum of 15 characters
-- Multiple Short URLs can share the same Target URL.
-- You need to produce a simple usage report for the application. This report should track the **number of clicks**, **originating geolocation** and **timestamp** of each visit to a Short URL.
-- You also need to provide a Wiki on your solution for short URL path. Explain the limitations and workarounds for your solution. 
+1. Your application is deployed with a web interface and a form field that accepts a Target URL.
+1. When the Target URL is shortened, the user is returned with a **Short URL**, the original **Target URL** and the **Title** tag of the Target URL.
+1. A Short URL can be publicly shared and accessed.
+1. A Short URL path can be in any URI pattern, but should not exceed a maximum of 15 characters
+1. Multiple Short URLs can share the same Target URL.
+1. You need to produce a simple usage report for the application. This report should track the **number of clicks**, **originating geolocation** and **timestamp** of each visit to a Short URL.
+1. You also need to publis a Wiki on your solution for short URL path. Explain the limitations and workarounds for your solution. 
 
 ## Scoring Guide
 All submissions will be evaluated based on the following criteria:
