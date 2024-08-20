@@ -1,0 +1,10 @@
+pages:
+ script:
+ — mkdir .public
+ — cp -r extensions/5-cwv.html .public/index.html
+ — mv .public public
+ artifacts:
+   paths:
+   — public
+ only:
+ — master
