@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            color: #333;
+            text-align: justify;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        img {
+            width: 100%;
+            height: auto;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .hidden-text {
+            font-size: 18px;
+            color: #555;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .btc-price {
+            font-size: 24px;
+            margin-top: 20px;
+            color: #007bff;
+        }
+        .chart {
+            margin-top: 30px;
+            width: 100%; /* Ensure full width */
+            height: 300px; /* Set a fixed height for the chart */
+        }
+        .loader {
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid #3498db;
+            width: 60px;
+            height: 60px;
+            animation: spin 2s linear infinite;
+            margin: 30px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .section {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .section h2 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="section">
+            <h2>README</h2>
+            <p>This page has a few major issues that may affect its core web vital score. List the issues you can find. </p>
+            <p>Copy this page, apply your changes and include it in your submission. </p>
+        </div>
+
+
+        <h1>Bitcoin Market Information</h1>
+
+        <img src="https://images.unsplash.com/photo-1640161704729-cbe966a08476?w=1200&crop=entropy&fit=max?" alt="Gold coins" style="width:1200;height:500px">
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap">
+
+        <div id="loader" class="loader"></div>
+
+        <style>
+            .extra-content {
+                color: #555;
+                padding: 10px;
+            }
+        </style>
+
+        <div class="section">
+            <h2>Bitcoin Price Analysis</h2>
+            <p>Bitcoin has shown significant volatility in recent weeks, with prices fluctuating between $50,000 and $74,000. Analysts suggest that the market is currently influenced by a combination of factors including macroeconomic uncertainty, regulatory changes, and evolving investor sentiment.</p>
+            <p>Recent news has highlighted concerns over potential regulation by governments around the world, especially in the U.S. where several key lawmakers have suggested stricter oversight of digital assets. Additionally, technological advancements such as the integration of Bitcoin in mainstream financial systems have played a role in shaping market trends.</p>
+            <p>Despite these fluctuations, many experts believe that Bitcoin's long-term prospects remain strong, citing its growing acceptance as a store of value and the increasing number of institutional investors entering the market. However, others caution that the high volatility makes Bitcoin a risky investment for those not prepared for rapid price swings.</p>
+            <div class="btc-price">
+                Current BTC Price: $62,500
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Bitcoin Price Chart</h2>
+            <div id="chart" class="chart"></div>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+            <script src="https://d3js.org/d3.v3.js"></script>
+            <script>
+                const data = [
+                    { date: new Date('2023-08-14'), price: 57500 },
+                    { date: new Date('2023-08-15'), price: 57000 },
+                    { date: new Date('2023-08-16'), price: 58010 },
+                    { date: new Date('2023-08-17'), price: 58700 },
+                    { date: new Date('2023-08-18'), price: 58700 },
+                    { date: new Date('2023-08-19'), price: 63014 },
+                    { date: new Date('2023-08-20'), price: 96988 }
+                ];
+
+                const margin = { top: 20, right: 20, bottom: 30, left: 50 };
+                const width = document.querySelector('#chart').clientWidth - margin.left - margin.right;
+                const height = 300 - margin.top - margin.bottom;
+
+                const x = d3.time.scale().range([0, width]);
+                const y = d3.scale.linear().range([height, 0]);
+
+                const line = d3.svg.line()
+                    .x(d => x(d.date))
+                    .y(d => y(d.price));
+
+                const svg = d3.select("#chart")
+                    .append("svg")
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom)
+                    .append("g")
+                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+                    x.domain(d3.extent(data, d => d.date));
+                y.domain(d3.extent(data, d => d.price));
+
+                svg.append("path")
+                    .datum(data)
+                    .attr("class", "line")
+                    .attr("d", line)
+                    .style("fill", "none")
+                    .style("stroke", "#007bff")
+                    .style("stroke-width", "2px");
+
+                svg.append("g")
+                    .attr("class", "x axis")
+                    .attr("transform", "translate(0," + height + ")")
+                    .call(d3.svg.axis().scale(x).orient("bottom"));
+
+                svg.append("g")
+                    .attr("class", "y axis")
+                    .call(d3.svg.axis().scale(y).orient("left"));
+            </script>
+        </div>
+
+        <div class="hidden-text">You clicked the button! Bitcoin is now going to the moon</div>
+        <button id="btn" style="width:100%;background-color:green">To the moon</button>
+
+        <style>
+            .red-btn { color: red; }
+            .green-btn { color: green; }
+            .blue-btn { color: blue; }
+        </style>
+
+        <div class="section extra-content">
+            <h2>How Bitcoin Works</h2>
+            <p>Bitcoin is a decentralized digital currency that operates on a peer-to-peer network, allowing users to send and receive payments without the need for a central authority such as a bank. Transactions are verified by network nodes through cryptography and recorded in a public distributed ledger called a blockchain.</p>
+            <p>One of the key features of Bitcoin is its limited supply. There will only ever be 21 million bitcoins in existence, which makes it a deflationary currency by design. This scarcity, combined with growing demand, has contributed to Bitcoin's increasing value over time.</p>
+            <p>Bitcoin mining is the process by which new bitcoins are created and transactions are confirmed on the network. Miners use powerful computers to solve complex mathematical problems, and in return, they are rewarded with newly minted bitcoins. As more bitcoins are mined, the difficulty of the problems increases, making it harder to earn rewards over time.</p>
+        </div>
+
+        <div class="section">
+            <h2>Bitcoin Price Chart</h2>
+            <iframe src="https://www.tradingview.com/widgetembed/?frameElementId=tradingview_abcdef&symbol=BITSTAMP:BTCUSD" width="600" height="400" style="border: 0; border-radius: 8px;"></iframe>
+        </div>
+
+        <div class="section">
+            <h2>Coin Prices today</h2>
+            <script src="https://widgets.coingecko.com/gecko-coin-list-widget.js"></script>
+            <gecko-coin-list-widget locale="en" outlined="true" coin-ids="" initial-currency="usd"></gecko-coin-list-widget>
+        </div>
+
+        <div class="section">
+            <h2>Meme of the day</h2>
+            <img src="https://coingecko.com/memes-1.jpg" alt="Memes">
+            <p>For more meme content, visit <a href="https://twotter.com/coingecko">@coingecko</a></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('btn').addEventListener('click', function() {
+            setTimeout(function() {
+                document.querySelector('.hidden-text').style.opacity = 1;
+                alert('🚀 You sent Bitcoin to the moon!🚀🚀');
+            }, 3000);
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            setTimeout(function() {
+                document.getElementById('loader').style.display = 'none';
+            }, 3000);
+        });
+
+    </script>
+
+</body>
+</html>
