@@ -2,7 +2,9 @@
 
 ## Objective
 
-Build a small HTTP service that returns the price of a **specific swap** identified by `tx_hash` + `swap_log_index` and computes the **base token USD price** for that swap.
+Build a proxy HTTP service that fetches and processes price data from a CSV source, with an optional live GeckoTerminal API source.
+
+The service should return the price of a **specific swap** identified by `tx_hash` + `swap_log_index` and computes the **base token USD price** for that swap.
 
 ## Glossary
 
@@ -10,6 +12,13 @@ Build a small HTTP service that returns the price of a **specific swap** identif
 - **Quote token**: The token you're pricing it _against_ (like USD in a stock price). In this dataset, WETH (`0x4200000000000000000000000000000000000006`) is the quote token.
 - **Anchor token**: A well-known token (WETH, SOL, USDC, etc.) with a reliable USD price available on public price APIs. A pool is eligible for pricing only when its quote token is an anchor token.
 - **Swap**: An on-chain exchange of one token for another. Each swap is uniquely identified by `tx_hash` + `swap_log_index`.
+
+#### Data sources
+
+1. A dataset containing a sample pool's ([CLAWD / WETH](https://www.geckoterminal.com/base/pools/0x9fd58e73d8047cb14ac540acd141d3fc1a41fb6252d674b730faf62fe24aa8ce)) swaps (provided as `6-swaps.csv`)
+2. GeckoTerminal Public API endpoint for USD price: `GET https://api.geckoterminal.com/api/v2/simple/networks/{network}/token_price/{addresses}`
+3. Bonus pool recent trades endpoint: `GET https://api.geckoterminal.com/api/v2/networks/{network}/pools/{pool_address}/trades`
+4. GeckoTerminal Public API endpoint documentation: https://www.geckoterminal.com/dex-api
 
 ### Required API endpoints
 
@@ -86,13 +95,6 @@ GeckoTerminal's API has rate limits (~10 requests/minute for free tier).
 3. Reuse the same core resolver logic as `/swap-price/csv`
 4. Return the same response schema, with `"source": "live"`
 5. Document in README any assumptions/limitations of live lookup
-
-#### Data sources
-
-1. A dataset containing a sample pool's ([CLAWD / WETH](https://www.geckoterminal.com/base/pools/0x9fd58e73d8047cb14ac540acd141d3fc1a41fb6252d674b730faf62fe24aa8ce)) swaps (provided as `6-swaps.csv`)
-2. GeckoTerminal Public API endpoint for USD price: `GET https://api.geckoterminal.com/api/v2/simple/networks/{network}/token_price/{addresses}`
-3. Bonus pool recent trades endpoint: `GET https://api.geckoterminal.com/api/v2/networks/{network}/pools/{pool_address}/trades`
-4. GeckoTerminal Public API endpoint documentation: https://www.geckoterminal.com/dex-api
 
 ## Submission
 
