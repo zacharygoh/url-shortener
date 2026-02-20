@@ -7,7 +7,7 @@ class ShortUrl < ApplicationRecord
 
   after_create :assign_short_code_from_id
 
-  scope :active, -> { where(is_active: true).where('expires_at IS NULL OR expires_at > ?', Time.current) }
+  scope :active, -> { where(is_active: true).where("expires_at IS NULL OR expires_at > ?", Time.current) }
 
   private
 

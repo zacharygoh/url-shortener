@@ -23,7 +23,7 @@ module Api
         stats = ShortUrls::ClickStatsQuery.new(short_url).full_stats
         render json: { data: stats }, status: :ok
       else
-        render json: { error: 'Short URL not found' }, status: :not_found
+        render json: { error: "Short URL not found" }, status: :not_found
       end
     end
 
@@ -33,7 +33,7 @@ module Api
       since = parse_since_param
 
       short_urls = ShortUrl.active
-                           .where('created_at >= ?', since)
+                           .where("created_at >= ?", since)
                            .order(created_at: :desc)
                            .limit(limit)
 

@@ -29,14 +29,14 @@ RSpec.describe GeoIpService do
       let(:ip_int) { IPAddr.new("8.8.8.8").to_i }
 
       before do
-        IpGeoRange.insert_all([{
+        IpGeoRange.insert_all([ {
           ip_from: ip_int,
           ip_to: ip_int,
           country_code: "US",
           country_name: "United States",
           region: "California",
           city: "Mountain View"
-        }])
+        } ])
       end
 
       it "returns country_code and city from the range" do

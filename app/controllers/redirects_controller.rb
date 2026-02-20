@@ -26,7 +26,7 @@ class RedirectsController < ApplicationController
           request.referer
         )
       else
-        return render file: Rails.public_path.join('404.html'), status: :not_found, layout: false
+        return render file: Rails.public_path.join("404.html"), status: :not_found, layout: false
       end
     end
 
@@ -43,16 +43,16 @@ class RedirectsController < ApplicationController
       data = JSON.parse(cached_data)
 
       # Enqueue click tracking if we have the short_url_id
-      if data['id']
+      if data["id"]
         TrackClickJob.perform_later(
-          data['id'],
+          data["id"],
           request.remote_ip,
           request.user_agent,
           request.referer
         )
       end
 
-      return data['target_url']
+      return data["target_url"]
     end
 
     nil

@@ -13,7 +13,7 @@ class CreatePriceCaches < ActiveRecord::Migration[7.2]
     end
 
     # Unique constraint on network + token_address combination
-    add_index :price_caches, [:network, :token_address], unique: true
+    add_index :price_caches, [ :network, :token_address ], unique: true
     add_index :price_caches, :expires_at
   end
 end

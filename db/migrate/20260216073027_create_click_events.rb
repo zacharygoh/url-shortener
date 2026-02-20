@@ -12,7 +12,7 @@ class CreateClickEvents < ActiveRecord::Migration[7.2]
       t.timestamps
     end
 
-    add_index :click_events, [:short_url_id, :clicked_at], order: { clicked_at: :desc }
+    add_index :click_events, [ :short_url_id, :clicked_at ], order: { clicked_at: :desc }
     add_index :click_events, :country_code, where: 'country_code IS NOT NULL'
   end
 end

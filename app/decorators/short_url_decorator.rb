@@ -21,9 +21,9 @@ class ShortUrlDecorator
   private
 
   def full_url
-    scheme = Rails.application.config.force_ssl ? 'https' : 'http'
+    scheme = Rails.application.config.force_ssl ? "https" : "http"
     opts = Rails.application.config.action_controller.default_url_options || {}
-    host = opts[:host] || 'localhost:3000'
+    host = opts[:host] || "localhost:3000"
     "#{scheme}://#{host}/#{@short_url.short_code}"
   end
 end
