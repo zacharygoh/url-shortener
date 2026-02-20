@@ -380,7 +380,7 @@ DEPENDENCIES
   rubocop-rails-omakase
   rubyzip
   selenium-webdriver
-  shoulda-matchers (~> 6.0)
+  shoulda-matchers (~> 7.0)
   sidekiq
   sprockets-rails
   stimulus-rails
