@@ -171,7 +171,7 @@ File deliverables (schema, cURLs, optional Postman collection) live in [extensio
 
 ## Deployed Application
 
-**URL:** https://herokuapp.com
+**URL:** https://url-shortener-web-2bb2cf7954c1.herokuapp.com
 
 ## Installation
 
