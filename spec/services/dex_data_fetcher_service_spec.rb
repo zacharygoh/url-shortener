@@ -156,7 +156,7 @@ RSpec.describe DexDataFetcherService do
       it "returns error hash with messages" do
         stub_request(:post, graph_url).to_return(
           status: 200,
-          body: { errors: [{ "message" => "Something went wrong" }] }.to_json,
+          body: { errors: [ { "message" => "Something went wrong" } ] }.to_json,
           headers: { "Content-Type" => "application/json" }
         )
 

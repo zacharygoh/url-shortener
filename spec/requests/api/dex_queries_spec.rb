@@ -21,7 +21,7 @@ RSpec.describe "API::DexQueries", type: :request do
         stub_request(:post, graph_url)
           .with(body: hash_including("query" => /pools\(first: 100\)/))
           .to_return(
-            body: { data: { pools: [{ id: "0x1", token0: { id: "a", symbol: "A" }, token1: { id: "b", symbol: "B" } }] } }.to_json,
+            body: { data: { pools: [ { id: "0x1", token0: { id: "a", symbol: "A" }, token1: { id: "b", symbol: "B" } } ] } }.to_json,
             headers: { "Content-Type" => "application/json" }
           )
       end

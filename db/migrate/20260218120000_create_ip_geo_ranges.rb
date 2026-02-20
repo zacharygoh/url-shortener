@@ -11,6 +11,6 @@ class CreateIpGeoRanges < ActiveRecord::Migration[7.2]
       t.string :city, limit: 100
     end
 
-    add_index :ip_geo_ranges, [:ip_from, :ip_to], name: "index_ip_geo_ranges_on_ip_from_ip_to"
+    add_index :ip_geo_ranges, [ :ip_from, :ip_to ], name: "index_ip_geo_ranges_on_ip_from_ip_to"
   end
 end

@@ -38,7 +38,7 @@ RSpec.describe ShortCode do
     end
 
     it 'is inverse of encode' do
-      [1, 100, 1000, 100_000, 1_000_000].each do |id|
+      [ 1, 100, 1000, 100_000, 1_000_000 ].each do |id|
         encoded = ShortCode.encode(id)
         expect(ShortCode.decode(encoded)).to eq(id)
       end

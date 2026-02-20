@@ -62,7 +62,7 @@ end
 
 namespace :ip_geo do
   desc "Import IP2Location LITE DB3 into ip_geo_ranges. Usage: rails ip_geo:import or rails ip_geo:import[/path/to/file.csv or file.zip]. Set IP_GEO_IMPORT_LIMIT (e.g. 1000) to cap rows for Heroku 10K limit."
-  task :import, [:path] => :environment do |_t, args|
+  task :import, [ :path ] => :environment do |_t, args|
     path = args[:path].presence
     path = path ? File.expand_path(path) : default_ip_geo_path&.to_s
 

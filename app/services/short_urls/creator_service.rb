@@ -44,17 +44,17 @@ module ShortUrls
         url_with_scheme = "https://#{url.strip}"
         addr = Addressable::URI.parse(url_with_scheme)
         # Reject scheme-less input that doesn't parse to a host that looks like a domain (e.g. "not-a-valid-url")
-        return nil if addr.host.blank? || !addr.host.include?('.')
+        return nil if addr.host.blank? || !addr.host.include?(".")
       end
 
       # Ensure scheme is present
-      addr.scheme ||= 'https'
+      addr.scheme ||= "https"
 
       # Normalize host to lowercase
       addr.host = addr.host&.downcase
 
       # Remove trailing slash from path
-      addr.path = addr.path.chomp('/') if addr.path.present?
+      addr.path = addr.path.chomp("/") if addr.path.present?
 
       addr.to_s
     rescue Addressable::URI::InvalidURIError
@@ -66,14 +66,14 @@ module ShortUrls
       host = uri.host.to_s.downcase
 
       # Check for localhost
-      return true if host.blank? || host == 'localhost' || host == '127.0.0.1' || host.start_with?('127.')
+      return true if host.blank? || host == "localhost" || host == "127.0.0.1" || host.start_with?("127.")
 
       # Check for private IP ranges
-      return true if host.start_with?('10.') || host.start_with?('192.168.') || host.start_with?('169.254.')
+      return true if host.start_with?("10.") || host.start_with?("192.168.") || host.start_with?("169.254.")
 
       # Check for 172.16.0.0/12 range
-      if host.start_with?('172.')
-        octets = host.split('.')
+      if host.start_with?("172.")
+        octets = host.split(".")
         second_octet = octets[1].to_i
         return true if second_octet >= 16 && second_octet <= 31
       end

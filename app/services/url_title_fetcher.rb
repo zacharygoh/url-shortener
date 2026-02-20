@@ -18,7 +18,7 @@ class UrlTitleFetcher
     return nil unless response.success?
 
     doc = Nokogiri::HTML(response.body)
-    title = doc.at_css('title')&.text&.strip
+    title = doc.at_css("title")&.text&.strip
     title.presence
   rescue StandardError => e
     Rails.logger.warn("Failed to fetch title for #{url}: #{e.message}")
@@ -36,14 +36,14 @@ class UrlTitleFetcher
     host = uri.host.to_s.downcase
 
     # Check for localhost
-    return true if host.blank? || host == 'localhost' || host == '127.0.0.1' || host.start_with?('127.')
+    return true if host.blank? || host == "localhost" || host == "127.0.0.1" || host.start_with?("127.")
 
     # Check for private IP ranges
-    return true if host.start_with?('10.') || host.start_with?('192.168.') || host.start_with?('169.254.')
+    return true if host.start_with?("10.") || host.start_with?("192.168.") || host.start_with?("169.254.")
 
     # Check for 172.16.0.0/12 range (172.16.0.0 - 172.31.255.255)
-    if host.start_with?('172.')
-      octets = host.split('.')
+    if host.start_with?("172.")
+      octets = host.split(".")
       second_octet = octets[1].to_i
       return true if second_octet >= 16 && second_octet <= 31
     end
