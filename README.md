@@ -1,34 +1,26 @@
 # CoinGecko URL Shortener
 
-A production-ready URL shortener service with Extension 1 (DEX data queries), built with Rails 7, Hotwire, and Tailwind CSS.
-
-### Transparency & Methodology
-
-CoinGecko required this assessment in Ruby on Rails. My expertise is in Go, Node.js, and TypeScript. Rather than cram Rails syntax under time pressure, I treated the exercise as an **architectural design challenge**: I owned the system design, database schema, design patterns, and edge cases, and used AI strictly as a **syntax translator** to produce idiomatic Rails code. This approach was cleared in advance with HR. The outcome is a production-ready app in your native stack—demonstrating rapid adaptability, system design depth, and execution over syntax memorization.
+URL shortener with Extension 1 (DEX data via Uniswap V3), built with Rails 7, Hotwire, and Tailwind CSS. Built as a Rails take-home; I used AI only for Rails syntax while owning design and structure.
 
 ## Features
 
 ### Core URL Shortener
-- 🔗 **Short URL Generation**: Base62-encoded short codes (7 chars, supports 3.5T URLs)
-- 📊 **Analytics**: Click tracking with geolocation, timestamps, and referrer data
-- ⚡ **High Performance**: Redis caching with 5min TTL, async click tracking via Sidekiq
-- 🔒 **Security**: SSRF protection, rate limiting, XSS prevention
-- 🎨 **Modern UI**: Hotwire (Turbo + Stimulus) with Tailwind CSS
+- Short codes (base62), redirects, optional click stats with geolocation
+- Redis cache (5min TTL), async click tracking (Sidekiq)
+- SSRF protection, rate limiting, XSS prevention
+- Hotwire (Turbo + Stimulus) and Tailwind CSS
 
-### Extension 1: Querying DEX Data
+### Extension 1: DEX Data
+DEX data is exposed as a Rails API: service object, 5-minute Redis cache, monetary fields as strings (BigDecimal-safe). Schema, cURLs, and optional Postman collection in `extensions/`.
 
-I implemented Extension 1 as a **Rails API**, not a one-off GraphQL script: a dedicated endpoint backed by a Service/Query Object, a **5-minute Redis cache** to handle high-concurrency reads and protect The Graph from thundering herds, and **financial fields returned as strings** (BigDecimal / PostgreSQL `NUMERIC`) to avoid floating-point errors. That reflects a production-reliability mindset—optimized for your stack and safe for financial data.
+- **Schema**: `extensions/1-schema.graphql` (Uniswap V3 subgraph)
+- **cURLs**: `extensions/1-query-*.curl` (100 pools; high liquidity past week; USDC/WETH pool)
+- **Postman**: `extensions/1-postman-collection.json`
+- **API key**: [The Graph Studio](https://thegraph.com/studio/apikeys/) — substitute `YOUR_API_KEY` in cURLs or collection
 
-**Deliverables:**
+#### DEX API endpoints
 
-- 📄 **Schema**: Uniswap V3 subgraph schema (introspection) in `extensions/1-schema.graphql`
-- 🔗 **cURL Queries**: Three queries (100 pools; 100 pools high liquidity past week; USDC/WETH pool) in `extensions/1-query-*.curl`
-- 📦 **Optional**: Postman collection in `extensions/1-postman-collection.json`
-- 🔑 **API Key**: Get a key from [The Graph Studio](https://thegraph.com/studio/apikeys/) and substitute `YOUR_API_KEY` in the cURL files or collection
-
-#### Rails API (Proof of Work)
-
-The same DEX data is exposed via `GET /api/dex/pools` and `GET /api/dex/pools/:id`. The controller delegates to a Service Object, reads through a 5-minute Redis cache, and returns pool data with monetary fields as strings (BigDecimal-safe).
+Same data at `GET /api/dex/pools` and `GET /api/dex/pools/:id`. Controller uses a service and 5-minute cache; monetary fields are strings.
 
 1. Set the API key (required for the DEX endpoints):
    ```bash
@@ -85,9 +77,9 @@ The same DEX data is exposed via `GET /api/dex/pools` and `GET /api/dex/pools/:i
 | HTTP Client | HTTParty | External API integration |
 | Testing | RSpec + Capybara | Unit & integration tests |
 
-### Mapping: Go / Node → Rails (Rosetta Stone)
+### Stack mapping (Go/Node → Rails)
 
-This stack was chosen to mirror CoinGecko’s internal environment (Dokku/Heroku, Sidekiq, Hotwire, RSpec, Brakeman, RuboCop). The table below maps my skillset (Go, Node.js, TypeScript, PostgreSQL, Redis, RabbitMQ, REST/gRPC, CI/CD) to the Rails equivalents in this project:
+CoinGecko uses Dokku/Heroku, Sidekiq, Hotwire, RSpec. Rough equivalents in this project:
 
 | My skillset (Go / Node) | This project (Rails) |
 |--------------------------|----------------------|
@@ -171,7 +163,7 @@ File deliverables (schema, cURLs, optional Postman collection) live in [extensio
 
 ## Deployed Application
 
-**URL:** https://herokuapp.com
+**URL:** https://url-shortener-web-2bb2cf7954c1.herokuapp.com
 
 ## Installation
 
@@ -233,10 +225,10 @@ Content-Type: application/json
   "target_url": "https://www.coingecko.com/en/coins/bitcoin"
 }
 
-# Response:
+# Response (short_url uses HOST env; in production set e.g. HOST=your-app.herokuapp.com):
 {
   "data": {
-    "short_url": "http://localhost:3000/abc123",
+    "short_url": "https://your-app.herokuapp.com/abc123",
     "short_code": "abc123",
     "target_url": "https://www.coingecko.com/en/coins/bitcoin",
     "title": "Bitcoin Price, Charts, and News | CoinGecko",
@@ -288,7 +280,7 @@ GET /api/report?limit=100&since=2026-02-01
 
 ### Extension 1: DEX Data (Uniswap V3 GraphQL)
 
-**Rails API:** The app exposes DEX data at `GET /api/dex/pools` and `GET /api/dex/pools/:id` (see [Rails API (Proof of Work)](#rails-api-proof-of-work) above for `THE_GRAPH_API_KEY`, curl examples, and sample JSON).
+**Rails API:** DEX data at `GET /api/dex/pools` and `GET /api/dex/pools/:id`. See [DEX API endpoints](#dex-api-endpoints) for `THE_GRAPH_API_KEY`, curl examples, and sample JSON.
 
 **File deliverables** (for submission): Use your API client or cURL with the Uniswap V3 subgraph:
 

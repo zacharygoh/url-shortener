@@ -23,7 +23,12 @@ class ShortUrlDecorator
   def full_url
     scheme = Rails.application.config.force_ssl ? "https" : "http"
     opts = Rails.application.config.action_controller.default_url_options || {}
-    host = opts[:host] || "localhost:3000"
+    host = opts[:host].presence || default_host
     "#{scheme}://#{host}/#{@short_url.short_code}"
+  end
+
+  def default_host
+    return "localhost:3000" if Rails.env.development? || Rails.env.test?
+    raise "HOST env var is required in production for short URL generation"
   end
 end
