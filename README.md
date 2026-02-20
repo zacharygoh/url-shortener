@@ -114,6 +114,13 @@ app/
 └── views/                # Hotwire templates
 ```
 
+### Documentation
+
+Design notes and decisions live in [docs/](docs/):
+
+- **ADRs** (Architecture Decision Records): [docs/adr/](docs/adr/) — short-code strategy, modular monolith, rate limiting
+- **Wiki**: [docs/wiki/](docs/wiki/) — short URL strategy and implementation notes
+
 ## Architecture
 
 ```mermaid
