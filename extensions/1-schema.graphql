@@ -1,0 +1,281 @@
+# Uniswap V3 Subgraph Schema (Extension 1 - Question 1)
+# Source: https://github.com/Uniswap/v3-subgraph/blob/main/src/v3/schema.graphql
+# You can also obtain this via an introspection query against the endpoint:
+#   POST https://gateway.thegraph.com/api/<YOUR_API_KEY>/subgraphs/id/5zvR82QoaXYFyDEKLZ9t6v9adgnptxYpKpSbxtgVENFV
+#   Body: { "query": "query IntrospectionQuery { __schema { types { name kind } queryType { name } mutationType { name } subscriptionType { name } } }" }
+# For full introspection, use your API client's "Introspect" feature or a full __schema introspection query.
+
+type Factory @entity(immutable: false) {
+ id: ID!
+ poolCount: BigInt!
+ txCount: BigInt!
+ totalVolumeUSD: BigDecimal!
+ totalVolumeETH: BigDecimal!
+ totalFeesUSD: BigDecimal!
+ totalFeesETH: BigDecimal!
+ untrackedVolumeUSD: BigDecimal!
+ totalValueLockedUSD: BigDecimal!
+ totalValueLockedETH: BigDecimal!
+ totalValueLockedUSDUntracked: BigDecimal!
+ totalValueLockedETHUntracked: BigDecimal!
+ owner: ID!
+}
+
+type Bundle @entity(immutable: false) {
+ id: ID!
+ ethPriceUSD: BigDecimal!
+}
+
+type Token @entity(immutable: false) {
+ id: Bytes!
+ symbol: String!
+ name: String!
+ decimals: BigInt!
+ totalSupply: BigInt!
+ volume: BigDecimal!
+ volumeUSD: BigDecimal!
+ untrackedVolumeUSD: BigDecimal!
+ feesUSD: BigDecimal!
+ txCount: BigInt!
+ poolCount: BigInt!
+ totalValueLocked: BigDecimal!
+ totalValueLockedUSD: BigDecimal!
+ totalValueLockedUSDUntracked: BigDecimal!
+ derivedETH: BigDecimal!
+ whitelistPools: [Pool!]!
+ tokenDayData: [TokenDayData!]! @derivedFrom(field: "token")
+}
+
+type Pool @entity(immutable: false) {
+ id: Bytes!
+ createdAtTimestamp: BigInt!
+ createdAtBlockNumber: BigInt!
+ token0: Token!
+ token1: Token!
+ feeTier: BigInt!
+ liquidity: BigInt!
+ sqrtPrice: BigInt!
+ token0Price: BigDecimal!
+ token1Price: BigDecimal!
+ tick: BigInt
+ observationIndex: BigInt!
+ volumeToken0: BigDecimal!
+ volumeToken1: BigDecimal!
+ volumeUSD: BigDecimal!
+ untrackedVolumeUSD: BigDecimal!
+ feesUSD: BigDecimal!
+ txCount: BigInt!
+ collectedFeesToken0: BigDecimal!
+ collectedFeesToken1: BigDecimal!
+ collectedFeesUSD: BigDecimal!
+ totalValueLockedToken0: BigDecimal!
+ totalValueLockedToken1: BigDecimal!
+ totalValueLockedETH: BigDecimal!
+ totalValueLockedUSD: BigDecimal!
+ totalValueLockedUSDUntracked: BigDecimal!
+ liquidityProviderCount: BigInt!
+ poolHourData: [PoolHourData!]! @derivedFrom(field: "pool")
+ poolDayData: [PoolDayData!]! @derivedFrom(field: "pool")
+ mints: [Mint!]! @derivedFrom(field: "pool")
+ burns: [Burn!]! @derivedFrom(field: "pool")
+ swaps: [Swap!]! @derivedFrom(field: "pool")
+ collects: [Collect!]! @derivedFrom(field: "pool")
+ ticks: [Tick!]! @derivedFrom(field: "pool")
+}
+
+type Tick @entity(immutable: false) {
+ id: ID!
+ poolAddress: Bytes!
+ tickIdx: BigInt!
+ pool: Pool!
+ liquidityGross: BigInt!
+ liquidityNet: BigInt!
+ price0: BigDecimal!
+ price1: BigDecimal!
+ createdAtTimestamp: BigInt!
+ createdAtBlockNumber: BigInt!
+}
+
+type Transaction @entity(immutable: true) {
+ id: ID!
+ blockNumber: BigInt!
+ timestamp: BigInt!
+ gasUsed: BigInt!
+ gasPrice: BigInt!
+ mints: [Mint]! @derivedFrom(field: "transaction")
+ burns: [Burn]! @derivedFrom(field: "transaction")
+ swaps: [Swap]! @derivedFrom(field: "transaction")
+ flashed: [Flash]! @derivedFrom(field: "transaction")
+ collects: [Collect]! @derivedFrom(field: "transaction")
+}
+
+type Mint @entity(immutable: true) {
+ id: ID!
+ transaction: Transaction!
+ timestamp: BigInt!
+ pool: Pool!
+ token0: Token!
+ token1: Token!
+ owner: Bytes!
+ sender: Bytes
+ origin: Bytes!
+ amount: BigInt!
+ amount0: BigDecimal!
+ amount1: BigDecimal!
+ amountUSD: BigDecimal
+ tickLower: BigInt!
+ tickUpper: BigInt!
+ logIndex: BigInt
+}
+
+type Burn @entity(immutable: true) {
+ id: ID!
+ transaction: Transaction!
+ pool: Pool!
+ token0: Token!
+ token1: Token!
+ timestamp: BigInt!
+ owner: Bytes
+ origin: Bytes!
+ amount: BigInt!
+ amount0: BigDecimal!
+ amount1: BigDecimal!
+ amountUSD: BigDecimal
+ tickLower: BigInt!
+ tickUpper: BigInt!
+ logIndex: BigInt
+}
+
+type Swap @entity(immutable: true) {
+ id: ID!
+ transaction: Transaction!
+ timestamp: BigInt!
+ pool: Pool!
+ token0: Token!
+ token1: Token!
+ sender: Bytes!
+ recipient: Bytes!
+ origin: Bytes!
+ amount0: BigDecimal!
+ amount1: BigDecimal!
+ amountUSD: BigDecimal!
+ sqrtPriceX96: BigInt!
+ tick: BigInt!
+ logIndex: BigInt
+}
+
+type Collect @entity(immutable: true) {
+ id: ID!
+ transaction: Transaction!
+ timestamp: BigInt!
+ pool: Pool!
+ owner: Bytes
+ amount0: BigDecimal!
+ amount1: BigDecimal!
+ amountUSD: BigDecimal
+ tickLower: BigInt!
+ tickUpper: BigInt!
+ logIndex: BigInt
+}
+
+type Flash @entity(immutable: true) {
+ id: ID!
+ transaction: Transaction!
+ timestamp: BigInt!
+ pool: Pool!
+ sender: Bytes!
+ recipient: Bytes!
+ amount0: BigDecimal!
+ amount1: BigDecimal!
+ amountUSD: BigDecimal!
+ amount0Paid: BigDecimal!
+ amount1Paid: BigDecimal!
+ logIndex: BigInt
+}
+
+type UniswapDayData @entity(immutable: false) {
+ id: ID!
+ date: Int!
+ volumeETH: BigDecimal!
+ volumeUSD: BigDecimal!
+ volumeUSDUntracked: BigDecimal!
+ feesUSD: BigDecimal!
+ txCount: BigInt!
+ tvlUSD: BigDecimal!
+}
+
+type PoolDayData @entity(immutable: false) {
+ id: ID!
+ date: Int!
+ pool: Pool!
+ liquidity: BigInt!
+ sqrtPrice: BigInt!
+ token0Price: BigDecimal!
+ token1Price: BigDecimal!
+ tick: BigInt
+ tvlUSD: BigDecimal!
+ volumeToken0: BigDecimal!
+ volumeToken1: BigDecimal!
+ volumeUSD: BigDecimal!
+ feesUSD: BigDecimal!
+ txCount: BigInt!
+ open: BigDecimal!
+ high: BigDecimal!
+ low: BigDecimal!
+ close: BigDecimal!
+}
+
+type PoolHourData @entity(immutable: false) {
+ id: ID!
+ periodStartUnix: Int!
+ pool: Pool!
+ liquidity: BigInt!
+ sqrtPrice: BigInt!
+ token0Price: BigDecimal!
+ token1Price: BigDecimal!
+ tick: BigInt
+ tvlUSD: BigDecimal!
+ volumeToken0: BigDecimal!
+ volumeToken1: BigDecimal!
+ volumeUSD: BigDecimal!
+ feesUSD: BigDecimal!
+ txCount: BigInt!
+ open: BigDecimal!
+ high: BigDecimal!
+ low: BigDecimal!
+ close: BigDecimal!
+}
+
+type TokenDayData @entity(immutable: false) {
+ id: ID!
+ date: Int!
+ token: Token!
+ volume: BigDecimal!
+ volumeUSD: BigDecimal!
+ untrackedVolumeUSD: BigDecimal!
+ totalValueLocked: BigDecimal!
+ totalValueLockedUSD: BigDecimal!
+ priceUSD: BigDecimal!
+ feesUSD: BigDecimal!
+ open: BigDecimal!
+ high: BigDecimal!
+ low: BigDecimal!
+ close: BigDecimal!
+}
+
+type TokenHourData @entity(immutable: false) {
+ id: ID!
+ periodStartUnix: Int!
+ token: Token!
+ volume: BigDecimal!
+ volumeUSD: BigDecimal!
+ untrackedVolumeUSD: BigDecimal!
+ totalValueLocked: BigDecimal!
+ totalValueLockedUSD: BigDecimal!
+ priceUSD: BigDecimal!
+ feesUSD: BigDecimal!
+ open: BigDecimal!
+ high: BigDecimal!
+ low: BigDecimal!
+ close: BigDecimal!
+}

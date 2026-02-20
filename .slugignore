@@ -1,0 +1,10 @@
+# Ignore these files during Heroku slug compilation
+spec/
+test/
+docs/
+*.md
+.rspec
+.rubocop.yml
+.gitignore
+.github/
+claude-implementation/

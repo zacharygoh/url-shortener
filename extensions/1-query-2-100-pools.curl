@@ -1,0 +1,7 @@
+# Extension 1 - Question 2: Query 100 pools with id, token0 (id, symbol), token1 (id, symbol)
+# Replace YOUR_API_KEY with your key from https://thegraph.com/studio/apikeys/
+
+curl -X POST \
+  'https://gateway.thegraph.com/api/YOUR_API_KEY/subgraphs/id/5zvR82QoaXYFyDEKLZ9t6v9adgnptxYpKpSbxtgVENFV' \
+  -H 'Content-Type: application/json' \
+  -d '{"query":"{ pools(first: 100) { id token0 { id symbol } token1 { id symbol } } }"}'

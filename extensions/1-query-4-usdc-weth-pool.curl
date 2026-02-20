@@ -1,0 +1,7 @@
+# Extension 1 - Question 4: Query USDC/WETH pool 0x8ad599c3a0ff1de082011efddc58f1908eb6e6d8 with full attributes
+# Replace YOUR_API_KEY with your key from https://thegraph.com/studio/apikeys/
+
+curl -X POST \
+  'https://gateway.thegraph.com/api/YOUR_API_KEY/subgraphs/id/5zvR82QoaXYFyDEKLZ9t6v9adgnptxYpKpSbxtgVENFV' \
+  -H 'Content-Type: application/json' \
+  -d '{"query":"{ pool(id: \"0x8ad599c3a0ff1de082011efddc58f1908eb6e6d8\") { id token0 { id symbol derivedETH } token1 { id symbol derivedETH } liquidity token0Price token1Price volumeToken0 volumeToken1 volumeUSD totalValueLockedUSD } }"}'

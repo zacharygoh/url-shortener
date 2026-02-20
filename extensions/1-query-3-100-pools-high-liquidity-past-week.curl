@@ -1,0 +1,11 @@
+# Extension 1 - Question 3: Query 100 pools with highest liquidity created in the past week
+# Replace YOUR_API_KEY with your key from https://thegraph.com/studio/apikeys/
+# The timestamp below is "one week ago" (Unix seconds). Update it for your run, e.g.:
+#   CREATED_SINCE=$(date -v-7d +%s)  # macOS
+#   CREATED_SINCE=$(date -d '7 days ago' +%s)  # Linux
+# Then replace 1738800000 in the query body with $CREATED_SINCE or a fixed value.
+
+curl -X POST \
+  'https://gateway.thegraph.com/api/YOUR_API_KEY/subgraphs/id/5zvR82QoaXYFyDEKLZ9t6v9adgnptxYpKpSbxtgVENFV' \
+  -H 'Content-Type: application/json' \
+  -d '{"query":"{ pools(first: 100, orderBy: totalValueLockedUSD, orderDirection: desc, where: { createdAtTimestamp_gte: \"1738800000\" }) { id token0 { id symbol } token1 { id symbol } } }"}'

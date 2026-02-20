@@ -1,0 +1,49 @@
+{
+  "info": {
+    "name": "Extension 1 - Uniswap V3 DEX Queries",
+    "description": "GraphQL queries for Extension 1: 100 pools, 100 pools (high liquidity, past week), USDC/WETH pool. Set variable `api_key` in collection.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "api_key", "value": "137dbf69fe73dc81d90702da5de5c0ff" },
+    { "key": "base_url", "value": "https://gateway.thegraph.com/api/{{api_key}}/subgraphs/id/5zvR82QoaXYFyDEKLZ9t6v9adgnptxYpKpSbxtgVENFV" }
+  ],
+  "item": [
+    {
+      "name": "Q2 - 100 pools (id, token0, token1)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"query\": \"{ pools(first: 100) { id token0 { id symbol } token1 { id symbol } } }\"}"
+        },
+        "url": "{{base_url}}"
+      }
+    },
+    {
+      "name": "Q3 - 100 pools, highest liquidity, created past week",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"query\": \"{ pools(first: 100, orderBy: totalValueLockedUSD, orderDirection: desc, where: { createdAtTimestamp_gte: \\\"1738800000\\\" }) { id token0 { id symbol } token1 { id symbol } } }\"}"
+        },
+        "url": "{{base_url}}"
+      }
+    },
+    {
+      "name": "Q4 - USDC/WETH pool by id",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"query\": \"{ pool(id: \\\"0x8ad599c3a0ff1de082011efddc58f1908eb6e6d8\\\") { id token0 { id symbol derivedETH } token1 { id symbol derivedETH } liquidity token0Price token1Price volumeToken0 volumeToken1 volumeUSD totalValueLockedUSD } }\"}"
+        },
+        "url": "{{base_url}}"
+      }
+    }
+  ]
+}
