@@ -13,18 +13,17 @@ We will implement a **Modular Monolith** architecture rather than microservices.
 ```
 app/
 ├── services/          # Business logic (Service Objects)
-│   ├── short_urls/
-│   └── swap_prices/
+│   └── short_urls/
 ├── queries/           # Complex queries (Query Objects)
 ├── values/            # Domain value objects
 ├── decorators/        # Presentation logic
-├── clients/           # External API clients
-└── jobs/              # Background jobs
+├── jobs/              # Background jobs
+└── ...                # DEX, etc.
 ```
 
 ### Modular Boundaries
 
-Namespaces (`ShortUrls::`, `SwapPrices::`), service objects for business logic, query objects for data access. Modules talk via clear interfaces.
+Namespaces (e.g. `ShortUrls::`, DEX-related services), service objects for business logic, query objects for data access. Modules talk via clear interfaces.
 
 ## Consequences
 
@@ -36,7 +35,7 @@ No scaling evidence yet. Microservices add discovery, inter-service calls, traci
 
 ## Migration Path
 
-If we split later: extract `SwapPrices::` (own tables, GeckoTerminal client, few ties to shortener); keep auth and Redis shared; add an API gateway to route traffic. Shopify, GitHub, and Basecamp run large Rails monoliths with clear boundaries.
+If we split later: add more domains (e.g. Extension 6) as modules first; extract a module when it has clear boundaries and own tables/APIs; keep auth and Redis shared; add an API gateway if needed. Shopify, GitHub, and Basecamp run large Rails monoliths with clear boundaries.
 
 ## References
 

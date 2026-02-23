@@ -1,6 +1,6 @@
 # config/initializers/redis.rb
 # Set up Redis connection for the application
-# Used by: PriceCacheService, CircuitBreaker, redirect cache, Rack::Attack
+# Used by: redirect cache, Rack::Attack, Sidekiq
 redis_url = ENV.fetch("REDIS_URL", "redis://localhost:6379/0")
 redis_options = { url: redis_url }
 # Heroku Redis (rediss://) uses TLS with a cert chain that can fail strict verification.
